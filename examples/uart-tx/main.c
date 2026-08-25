@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include <include/gpio.h>
+#include <include/uart.h>
 
 typedef struct {
     volatile uint32_t MODER;

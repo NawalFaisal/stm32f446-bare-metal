@@ -1,26 +1,10 @@
-#include <stdint.h>
+#include "gpio.h"
 
 //goal use user button click on it and pa6 should turn on and off for each click
 //the user button is connected to the I/O PC13
-
-typedef struct GPIO{
-
-volatile uint32_t MODER; 
-volatile uint32_t RESERVED[3];
-volatile uint32_t IDR;
-volatile uint32_t ODR;
-} GPIO_TypeDef;
-
-
-
-typedef struct RCC{
-    volatile uint32_t RESERVED[12];
-    volatile uint32_t AHB1ENR;
-} RCC_TypeDef;
-
-#define GPIOC ((GPIO_TypeDef *) 0x40020800)  
-#define GPIOA ((GPIO_TypeDef *) 0x40020000)
-#define RCC  ((RCC_TypeDef *) 0x40023800)
+#define GPIOC ((TypeDef_GPIO *) 0x40020800)  
+#define GPIOA ((TypeDef_GPIO *) 0x40020000)
+#define RCC  ((TypeDef_RCC *) 0x40023800)
 
 
 int main(void){

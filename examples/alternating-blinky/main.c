@@ -1,18 +1,8 @@
-#include <stdint.h>
 
-typedef struct {
-    volatile uint32_t MODER;
-    volatile uint32_t RESERVED[4];
-    volatile uint32_t ODR;
-} GPIO_TypeDef;
+#include "gpio.h"
 
-typedef struct {
-    volatile uint32_t RESERVED[12];
-    volatile uint32_t AHB1ENR;
-} RCC_TypeDef;
-
-#define RCC ((RCC_TypeDef *)0x40023800)
-#define GPIOA ((GPIO_TypeDef *)0x40020000)
+#define RCC ((TypeDef_RCC *)0x40023800)
+#define GPIOA ((TypeDef_GPIO *)0x40020000)
 
 int main(void) {
     RCC->AHB1ENR |= (1 << 0);

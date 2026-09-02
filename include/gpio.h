@@ -2,6 +2,7 @@
 #define GPIO_H
 #include <stdint.h>
 
+
 typedef struct {
     volatile uint32_t MODER;
     volatile uint32_t OTYPER;
@@ -21,5 +22,11 @@ typedef struct {
     volatile uint32_t RESERVED2[3];   // offset 0x34 to 0x3C
     volatile uint32_t APB1ENR;        // offset 0x40
 } TypeDef_RCC;
+
+#define GPIOA ((TypeDef_GPIO *)0x40020000)
+#define RCC   ((TypeDef_RCC *)0x40023800)
+
+void set_led(void);
+void reset_led(void);
 
 #endif

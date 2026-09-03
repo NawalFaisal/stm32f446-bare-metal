@@ -24,9 +24,14 @@ typedef struct {
 } TypeDef_RCC;
 
 #define GPIOA ((TypeDef_GPIO *)0x40020000)
+#define GPIOC ((TypeDef_GPIO *)0x40020800)
 #define RCC   ((TypeDef_RCC *)0x40023800)
 
-void set_led(void);
-void reset_led(void);
+
+void set_led(TypeDef_GPIO *port, uint8_t pin);
+void reset_led(TypeDef_GPIO *port, uint8_t pin);
+
+uint8_t set_button(TypeDef_GPIO *port, uint8_t pin);
+
 
 #endif

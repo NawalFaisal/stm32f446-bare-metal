@@ -2,8 +2,8 @@ CFLAGS = -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
 
 all: firmware.elf
 
-firmware.elf: platform/startup.s examples/blinky/main.c
-	arm-none-eabi-gcc $(CFLAGS) -T platform/stm32f446.ld platform/startup.s drivers/gpio.c examples/blinky/main.c -o firmware.elf
+firmware.elf: platform/startup.s examples/button-input-blinky/main.c
+	arm-none-eabi-gcc $(CFLAGS) -T platform/stm32f446.ld platform/startup.s drivers/gpio.c examples/button-input-blinky/main.c -o firmware.elf
 
 clean:
 	rm -f firmware.elf

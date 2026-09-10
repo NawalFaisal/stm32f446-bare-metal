@@ -1,9 +1,12 @@
-CFLAGS = -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
+CFLAGS = -g -O0 -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
+
+SRC = examples/blinky-systick-handler/main.c
+DRIVERS = drivers/timers/systick.c
 
 all: firmware.elf
 
-firmware.elf: platform/startup.s examples/button-input-blinky/main.c
-	arm-none-eabi-gcc $(CFLAGS) -T platform/stm32f446.ld platform/startup.s drivers/gpio.c examples/button-input-blinky/main.c -o firmware.elf
+firmware.elf: platform/startup.s $(SRC) $(DRIVERS)
+	arm-none-eabi-gcc $(CFLAGS) -T platform/stm32f446.ld platform/startup.s $(DRIVERS) $(SRC) -o firmware.elf
 
 clean:
 	rm -f firmware.elf

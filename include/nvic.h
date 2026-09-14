@@ -18,3 +18,17 @@ typedef struct {
 
 #define NVIC ((TypeDef_NVIC *)0xE000E100)
 #endif //NVIC_H
+
+/* ISER[0] = 00000000 00000000 00000000 00000000  0-31
+   ISER[1] enables irq between 32-63
+   ISER[2] enables irq 64-95
+   ISER[3] enables irq 96-127
+   ISER[4] enables irq 128-159
+   ISER[5] enables irq 160-191
+   ISER[6] enables irq 192-224
+   ISER[7] enables irq 225 - 256   
+   8 x 32 = 256
+    each bite repersnets one irq so iser[10] can enable interupts that are between the numbers of 0-31
+    so to get 40 just do irq / 32 = 1 and irq % 32
+
+*/

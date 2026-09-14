@@ -1,7 +1,6 @@
 CFLAGS = -g -O0 -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
 
-SRC = examples/blinky-systick-handler/main.c
-DRIVERS = drivers/timers/systick.c
+SRC = examples/button-input-blinky-exti/main.c
 
 all: firmware.elf
 

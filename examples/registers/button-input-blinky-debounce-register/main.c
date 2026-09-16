@@ -1,11 +1,8 @@
 #include "gpio.h"
+#include "rcc.h"
 
 //goal use user button click on it and pa6 should turn on and off for each click
 //the user button is connected to the I/O PC13
-#define GPIOC ((TypeDef_GPIO *) 0x40020800)  
-#define GPIOA ((TypeDef_GPIO *) 0x40020000)
-#define RCC  ((TypeDef_RCC *) 0x40023800)
-
 
 int main(void){
     RCC -> AHB1ENR |= (1<<0);  //GPIOA

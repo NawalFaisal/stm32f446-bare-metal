@@ -1,8 +1,8 @@
 
 #include "gpio.h"
+#include "rcc.h"
 
-#define RCC ((TypeDef_RCC *)0x40023800)
-#define GPIOA ((TypeDef_GPIO *)0x40020000)
+//goal:Alternate two blinkys
 
 int main(void) {
     RCC->AHB1ENR |= (1 << 0);

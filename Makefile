@@ -1,6 +1,6 @@
 CFLAGS = -g -O0 -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
 
-SRC = examples/button-input-blinky-exti/main.c
+SRC = examples/uart/main.c
 
 all: firmware.elf
 

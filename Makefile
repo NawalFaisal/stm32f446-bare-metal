@@ -1,6 +1,6 @@
 CFLAGS = -g -O0 -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
 
-SRC = examples/uart/main.c
+SRC = examples/uart-interrupt-register/main.c
 
 all: firmware.elf
 

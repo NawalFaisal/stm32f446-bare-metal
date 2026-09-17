@@ -42,9 +42,12 @@ SECTIONS
      * Costs zero flash. Startup zeroes it.
      */
     .bss :
-    {    _sbss = .;
+    {
+        . = ALIGN(4);
+        _sbss = .;
         *(.bss*)
         *(COMMON)
+        . = ALIGN(4);
         _ebss = .;
     } > RAM
 }

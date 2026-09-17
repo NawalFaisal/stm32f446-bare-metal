@@ -29,6 +29,10 @@ Default_Handler:
 .thumb_set EXTI9_5_IRQHandler, Default_Handler
 .weak EXTI15_10_IRQHandler
 .thumb_set EXTI15_10_IRQHandler, Default_Handler
+.weak USART1_IRQHandler
+.thumb_set USART1_IRQHandler, Default_Handler
+.weak USART2_IRQHandler
+.thumb_set USART2_IRQHandler, Default_Handler
 
 /* The first two words of flash. The CPU reads these at power-on:
  * slot 0 -> initial stack pointer, slot 1 -> where to start executing.
@@ -89,8 +93,8 @@ Default_Handler:
 .word Default_Handler           /* 50: IRQ34 I2C2_ER         */
 .word Default_Handler           /* 51: IRQ35 SPI1            */
 .word Default_Handler           /* 52: IRQ36 SPI2            */
-.word Default_Handler           /* 53: IRQ37 USART1          */
-.word Default_Handler           /* 54: IRQ38 USART2          */
+.word USART1_IRQHandler         /* 53: IRQ37 USART1          */
+.word USART2_IRQHandler       /* 54: IRQ38 USART2          */
 .word Default_Handler           /* 55: IRQ39 USART3          */
 .word EXTI15_10_IRQHandler      /* 56: IRQ40 EXTI15_10  <-- PC13 */
 
@@ -103,10 +107,18 @@ Default_Handler:
  * _sbss and _ebss are exported by the linker script.
  */
 Reset_Handler:
-    ldr r0, =_sbss      /* start of .bss */
-    ldr r1, =_ebss      /* end of .bss */
-    movs r2, #0         /* the value to write */
-    str r2, [r0]        /* TODO: only zeroes the FIRST word — needs a loop */
+    ldr r0, =_sbss
+    ldr r1, =_ebss
+    movs r2, #0
+
+zero_loop:
+    cmp r0, r1
+    bhs zero_done
+    str r2, [r0]
+    adds r0, #4
+    b zero_loop
+
+zero_done:
     bl main
 
 loop:

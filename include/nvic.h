@@ -29,6 +29,7 @@ typedef struct {
    ISER[7] enables irq 225 - 256   
    8 x 32 = 256
     each bite repersnets one irq so iser[10] can enable interupts that are between the numbers of 0-31
-    so to get 40 just do irq / 32 = 1 and irq % 32
+    so to get 40 just do irq / 32 = 1 and irq % 32  
+    
 
 */

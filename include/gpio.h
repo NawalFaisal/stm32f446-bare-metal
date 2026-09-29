@@ -31,13 +31,12 @@ typedef enum {
     GPIO_HIGH = 1,
 } gpio_state_t;
 
-void gpio_init (TypeDef_GPIO *port, uint8_t pin, gpio_mode_t mode);
-
-
+void         gpio_init (TypeDef_GPIO *port, uint8_t pin, gpio_mode_t mode);
 void         gpio_set   (TypeDef_GPIO *port, uint8_t pin);
 void         gpio_reset (TypeDef_GPIO *port, uint8_t pin);
 void         gpio_toggle(TypeDef_GPIO *port, uint8_t pin);
 void         gpio_write (TypeDef_GPIO *port, uint8_t pin, gpio_state_t state);
+void         gpio_set_af(TypeDef_GPIO *port, uint8_t pin, uint8_t af);
 gpio_state_t gpio_read  (TypeDef_GPIO *port, uint8_t pin);
 
 #endif

@@ -23,6 +23,11 @@ typedef enum {
     BAUD_115200 = 115200
 } baud_rate_t;
 
+void usart_init(TypeDef_USART *usart, baud_rate_t baud);
+char usart_read_char(TypeDef_USART *usart); 
+void usart_write_char(TypeDef_USART *usart, char c);
+int usart_read_ready(TypeDef_USART *usart);
+char usart_read_char_nb(TypeDef_USART *usart);
 
 
 

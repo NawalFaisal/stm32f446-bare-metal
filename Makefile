@@ -1,6 +1,7 @@
 CFLAGS = -g -O0 -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
 
-SRC = examples/uart-interrupt-register/main.c
+DRIVERS = drivers/gpio.c drivers/uart.c drivers/ringbuffer.c drivers/nvic.c
+SRC = examples/drivers/uart-interrupt-driver/main.c
 
 all: firmware.elf
 
@@ -12,3 +13,7 @@ clean:
 
 flash:
 	openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program firmware.elf verify reset exit"
+
+
+
+

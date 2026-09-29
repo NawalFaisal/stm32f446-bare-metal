@@ -10,4 +10,7 @@ typedef struct{
     uint8_t volatile tail;  //0-63 index
 }TypeDef_RINGBUF;
 
-#endif //RINGBUFFER_H
+int rb_get(TypeDef_RINGBUF *rb, char *c);
+void rb_put(TypeDef_RINGBUF *rb, char c);
+
+#endif //RINGBUFFER_H 

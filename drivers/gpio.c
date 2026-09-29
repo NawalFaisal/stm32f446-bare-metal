@@ -31,6 +31,12 @@ void gpio_write(TypeDef_GPIO *port, uint8_t pin, gpio_state_t state){
         gpio_reset(port, pin);
 }
 
+void gpio_set_af(TypeDef_GPIO *port, uint8_t pin, uint8_t af) {
+    if (pin > 15U) return;
+    port->AFR[pin / 8U] &= ~(0xFU << ((pin % 8U) * 4U));
+    port->AFR[pin / 8U] |=  ((uint32_t)af << ((pin % 8U) * 4U));
+}
+
 gpio_state_t gpio_read(TypeDef_GPIO *port, uint8_t pin){
     return (port->IDR & pin_mask(pin)) ? GPIO_HIGH : GPIO_LOW;
 }

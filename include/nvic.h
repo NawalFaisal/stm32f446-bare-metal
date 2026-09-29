@@ -17,6 +17,18 @@ typedef struct {
 } TypeDef_NVIC;
 
 #define NVIC ((TypeDef_NVIC *)0xE000E100)
+
+typedef enum {
+    IRQ_EXTI0      = 6,
+    IRQ_EXTI1      = 7,
+    IRQ_USART2     = 38,
+    IRQ_EXTI15_10  = 40,
+} IRQn_Type;
+
+void nvic_enable(IRQn_Type irqn);
+void nvic_clear_enable(IRQn_Type irqn);
+void nvic_pending(IRQn_Type irqn);
+void nvic_clear_pending(IRQn_Type irqn);
 #endif //NVIC_H
 
 /* ISER[0] = 00000000 00000000 00000000 00000000  0-31

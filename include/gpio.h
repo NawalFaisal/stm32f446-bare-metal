@@ -1,6 +1,5 @@
 #ifndef GPIO_H
 #define GPIO_H
-
 #include <stdint.h>
 
 typedef struct {
@@ -20,9 +19,9 @@ typedef struct {
 #define GPIOC ((gpio_t *)0x40020800)
 
 typedef enum {
-    GPIO_MODE_INPUT  = 0x0,
+    GPIO_MODE_INPUT = 0x0,
     GPIO_MODE_OUTPUT = 0x1,
-    GPIO_MODE_AF     = 0x2,
+    GPIO_MODE_AF = 0x2,
     GPIO_MODE_ANALOG = 0x3,
 } gpio_mode_t;
 

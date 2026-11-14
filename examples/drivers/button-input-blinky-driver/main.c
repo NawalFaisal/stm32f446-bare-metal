@@ -2,10 +2,10 @@
 #include "rcc.h"
 
 int main(void) {
-    RCC->AHB1ENR |= (1U << 0);   // GPIOA clock
-    RCC->AHB1ENR |= (1U << 2);   // GPIOC clock
+    RCC->AHB1ENR |= (1U << 0); // GPIOA clock
+    RCC->AHB1ENR |= (1U << 2); // GPIOC clock
 
-    gpio_init(GPIOA, 5,  GPIO_MODE_OUTPUT);
+    gpio_init(GPIOA, 5, GPIO_MODE_OUTPUT);
     gpio_init(GPIOC, 13, GPIO_MODE_INPUT);
 
     while (1) {

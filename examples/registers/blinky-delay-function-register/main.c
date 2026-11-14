@@ -1,7 +1,7 @@
-#include <stdint.h>
 #include "delay.h"
-#include "rcc.h"
 #include "gpio.h"
+#include "rcc.h"
+#include <stdint.h>
 
 // volatile = don't be clever with this one.
 // the compiler thinks it knows everything happening to memory, so it deletes
@@ -11,14 +11,14 @@
 // i watched it happen at -O2: it read MODER before turning the clock on.
 
 int main(void) {
-    RCC -> AHB1ENR |= (1U << 0);        
-    GPIOA -> MODER &= ~(3U << 10);      
-    GPIOA -> MODER |=  (1U << 10);
+  RCC->AHB1ENR |= (1U << 0);
+  GPIOA->MODER &= ~(3U << 10);
+  GPIOA->MODER |= (1U << 10);
 
-    while (1) {
-        GPIOA -> ODR |= (1U << 5);  
-        delay(); 
-        GPIOA -> ODR &= ~(1U << 5);
-        delay();   
-    }
+  while (1) {
+    GPIOA->ODR |= (1U << 5);
+    delay();
+    GPIOA->ODR &= ~(1U << 5);
+    delay();
+  }
 }

@@ -13,12 +13,13 @@ typedef struct {
     volatile uint32_t BSRR;
     volatile uint32_t LCKR;
     volatile uint32_t AFR[2];
-} TypeDef_GPIO;
+} gpio_t;
 
-#define GPIOA ((TypeDef_GPIO *)0x40020000)
-#define GPIOB ((TypeDef_GPIO *)0x40020400)
-#define GPIOC ((TypeDef_GPIO *)0x40020800)
+#define GPIOA ((gpio_t *)0x40020000)
+#define GPIOB ((gpio_t *)0x40020400)
+#define GPIOC ((gpio_t *)0x40020800)
 
+/* MODER field values, 2 bits per pin */
 typedef enum {
     GPIO_MODE_INPUT  = 0x0,
     GPIO_MODE_OUTPUT = 0x1,
@@ -26,17 +27,25 @@ typedef enum {
     GPIO_MODE_ANALOG = 0x3,
 } gpio_mode_t;
 
+/* PUPDR field values, 2 bits per pin */
+typedef enum {
+    GPIO_PULL_NONE = 0x0,
+    GPIO_PULL_UP   = 0x1,
+    GPIO_PULL_DOWN = 0x2,
+} gpio_pull_t;
+
 typedef enum {
     GPIO_LOW  = 0,
     GPIO_HIGH = 1,
 } gpio_state_t;
 
-void         gpio_init (TypeDef_GPIO *port, uint8_t pin, gpio_mode_t mode);
-void         gpio_set   (TypeDef_GPIO *port, uint8_t pin);
-void         gpio_reset (TypeDef_GPIO *port, uint8_t pin);
-void         gpio_toggle(TypeDef_GPIO *port, uint8_t pin);
-void         gpio_write (TypeDef_GPIO *port, uint8_t pin, gpio_state_t state);
-void         gpio_set_af(TypeDef_GPIO *port, uint8_t pin, uint8_t af);
-gpio_state_t gpio_read  (TypeDef_GPIO *port, uint8_t pin);
+void gpio_init(gpio_t *port, uint8_t pin, gpio_mode_t mode);
+void gpio_set_pull(gpio_t *port, uint8_t pin, gpio_pull_t pull);
+void gpio_set_af(gpio_t *port, uint8_t pin, uint8_t af);
+void gpio_set(gpio_t *port, uint8_t pin);
+void gpio_reset(gpio_t *port, uint8_t pin);
+void gpio_toggle(gpio_t *port, uint8_t pin);
+void gpio_write(gpio_t *port, uint8_t pin, gpio_state_t state);
+gpio_state_t gpio_read(gpio_t *port, uint8_t pin);
 
-#endif
+#endif /* GPIO_H */

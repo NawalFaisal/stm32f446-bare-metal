@@ -1,6 +1,6 @@
 #include "gpio.h"
 
-//inline helper fucntion so yoou dont have to keeping masking the 32 bites to turn it on
+//inline helper fucntion so you dont have to keeping masking the 32 bites to turn it on
 static inline uint32_t pin_mask(uint8_t pin) {
     return (1U << pin);
 }
@@ -39,4 +39,11 @@ void gpio_set_af(TypeDef_GPIO *port, uint8_t pin, uint8_t af) {
 
 gpio_state_t gpio_read(TypeDef_GPIO *port, uint8_t pin){
     return (port->IDR & pin_mask(pin)) ? GPIO_HIGH : GPIO_LOW;
+}
+
+//PUPDR is 2 bits per pin like MODER. pull-up holds the pin high so a button wired to ground reads low when pressed
+void gpio_set_pull(TypeDef_GPIO *port, uint8_t pin, gpio_pull_t pull){
+    if (pin > 15U) return;
+    port->PUPDR &= ~(0x3U << (pin * 2U));
+    port->PUPDR |=  ((uint32_t)pull << (pin * 2U));
 }

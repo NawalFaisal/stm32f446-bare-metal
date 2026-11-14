@@ -3,7 +3,6 @@
 
 void nvic_enable(IRQn_Type irqn){
     NVIC -> ISER[irqn / 32] |= (1U << (irqn % 32));
-
 }
 
 void nvic_clear_enable(IRQn_Type irqn){

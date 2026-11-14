@@ -12,4 +12,6 @@ typedef struct {
 
 #define RCC   ((TypeDef_RCC *)0x40023800)
 
+void init_RCC_AHB1LPENR(TypeDef_RCC *port, uint8_t pin);
+
 #endif //RCC_H

@@ -3,14 +3,14 @@
 #include <stdint.h>
 
 typedef struct {
-  uint32_t volatile SYSCFG_MEMRMP;
-  uint32_t volatile SYSCFG_PMC;
-  uint32_t volatile SYSCFG_EXTICR1; // pins 0-3
-  uint32_t volatile SYSCFG_EXTICR2; // pins 4-7
-  uint32_t volatile SYSCFG_EXTICR3; // pins 8-11
-  uint32_t volatile SYSCFG_EXTICR4; // pins 12-15
-  uint32_t volatile SYSCFG_CMPCR;
-  uint32_t volatile SYSCFG_CFGR;
+    uint32_t volatile SYSCFG_MEMRMP;
+    uint32_t volatile SYSCFG_PMC;
+    uint32_t volatile SYSCFG_EXTICR1; // pins 0-3
+    uint32_t volatile SYSCFG_EXTICR2; // pins 4-7
+    uint32_t volatile SYSCFG_EXTICR3; // pins 8-11
+    uint32_t volatile SYSCFG_EXTICR4; // pins 12-15
+    uint32_t volatile SYSCFG_CMPCR;
+    uint32_t volatile SYSCFG_CFGR;
 } TypeDef_SYSCFG;
 
 // 0x4001 3800 - 0x4001 3BFF

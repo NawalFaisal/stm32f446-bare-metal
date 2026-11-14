@@ -3,10 +3,10 @@
 #include <stdint.h>
 
 typedef struct {
-  uint32_t volatile SYST_CSR;
-  uint32_t volatile SYST_RVR;
-  uint32_t volatile SYST_CVR;
-  uint32_t volatile SYST_CALIB;
+    uint32_t volatile SYST_CSR;
+    uint32_t volatile SYST_RVR;
+    uint32_t volatile SYST_CVR;
+    uint32_t volatile SYST_CALIB;
 } TypeDef_SYST;
 
 // cast this memory space to that struct

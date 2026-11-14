@@ -1,5 +1,4 @@
 #include "spi.h"
 
 
-//inialize 
-
+// inialize

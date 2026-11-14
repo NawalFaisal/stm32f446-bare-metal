@@ -13,13 +13,12 @@
  * pin HIGH when the button is open, so a press reads LOW.
  * -------------------------------------------------------------------- */
 
-#define LED_PIN   5U
-#define NUM_KEYS  5U
+#define LED_PIN 5U
+#define NUM_KEYS 5U
 
-static const uint8_t key_pins[NUM_KEYS] = { 10U, 8U, 9U, 7U, 6U };
+static const uint8_t key_pins[NUM_KEYS] = {10U, 8U, 9U, 7U, 6U};
 
-int main(void)
-{
+int main(void) {
     /* GPIOA clock on */
     init_RCC_AHB1LPENR(RCC, 0);
 

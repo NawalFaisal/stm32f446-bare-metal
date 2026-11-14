@@ -14,6 +14,23 @@ clean:
 flash:
 	openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program firmware.elf verify reset exit"
 
+FMT_FILES := $(shell find drivers include examples platform utils \
+                      \( -name '*.c' -o -name '*.h' \) 2>/dev/null)
 
+format:
+	clang-format -i $(FMT_FILES)
+
+format-check:
+	clang-format --dry-run --Werror $(FMT_FILES)
+
+tidy:
+	clang-tidy $(FMT_FILES) -- -Iinclude
+
+test:
+	$(MAKE) -C tests/unit
+
+check: format-check test
+
+.PHONY: format format-check tidy test check
 
 

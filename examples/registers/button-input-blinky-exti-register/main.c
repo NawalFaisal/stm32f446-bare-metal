@@ -8,7 +8,7 @@
 #include "gpio.h"
 #include "nvic.h"
 #include "rcc.h"
-#include "syscfg.h"
+#include "sys.h"
 
 // Led is PA5
 // the user button is connected to the I/O PC13

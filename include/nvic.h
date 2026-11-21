@@ -13,22 +13,22 @@ typedef struct {
     uint32_t RESERVED3[24];
     volatile uint32_t IABR[8]; /* 0x200 activity bit*/
     uint32_t RESERVED4[56];
-    volatile uint32_t IPR[60]; /* 0x300 prority bit*/
-} TypeDef_NVIC;
+    volatile uint32_t IPR[240]; /* 0x300 prority bit*/
+} nvic_t;
 
-#define NVIC ((TypeDef_NVIC *)0xE000E100)
+#define NVIC ((nvic_t *)0xE000E100)
 
 typedef enum {
     IRQ_EXTI0 = 6,
     IRQ_EXTI1 = 7,
     IRQ_USART2 = 38,
     IRQ_EXTI15_10 = 40,
-} IRQn_Type;
+} IRQn_t;
 
-void nvic_enable(IRQn_Type irqn);
-void nvic_clear_enable(IRQn_Type irqn);
-void nvic_pending(IRQn_Type irqn);
-void nvic_clear_pending(IRQn_Type irqn);
+void nvic_enable(IRQn_t irqn);
+void nvic_clear_enable(IRQn_t irqn);
+void nvic_pending(IRQn_t irqn);
+void nvic_clear_pending(IRQn_t irqn);
 #endif // NVIC_H
 
 /* ISER[0] = 00000000 00000000 00000000 00000000  0-31

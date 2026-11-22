@@ -1,7 +1,7 @@
 CFLAGS = -g -O0 -mcpu=cortex-m4 -mthumb -nostdlib -Iinclude
 
 DRIVERS = drivers/gpio.c drivers/rcc.c
-SRC = examples/registers/uart-register-rx/main.c
+SRC = examples/registers/spi-register/main.c
 
 all: firmware.elf
 

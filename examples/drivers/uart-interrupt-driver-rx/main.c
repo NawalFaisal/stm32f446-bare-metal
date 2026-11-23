@@ -3,19 +3,19 @@
 #include "rcc.h"
 #include "ringbuffer.h"
 #include "uart.h"
-#include <stdint.h>
 
-static TypeDef_RINGBUF rx; // create an instance of struct.
+
+static ringbuf_t rx; //
 
 void USART2_IRQHandler(void) {
     if (!usart_read_ready(USART2)) return;
     char c = usart_read_char_nb(USART2);
-    rb_put(&rx, c); // pass the memory address of buffer and char
+    rb_put(&rx, c); 
 }
 
 int main(void) {
-    RCC->AHB1ENR |= (1U << 0);  /* GPIOA */
-    RCC->APB1ENR |= (1U << 17); /* USART2 */
+    rcc_enable(RCC_GPIOA);
+    rcc_enable(RCC_USART2);
 
     gpio_init(GPIOA, 2, GPIO_MODE_AF);
     gpio_set_af(GPIOA, 2, 7);
@@ -23,6 +23,7 @@ int main(void) {
     gpio_set_af(GPIOA, 3, 7);
 
     usart_init(USART2, BAUD_115200);
+    usart_rx_interrupt_enable(USART2);
     nvic_enable(IRQ_USART2);
 
     while (1) {

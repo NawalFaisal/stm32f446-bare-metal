@@ -27,5 +27,11 @@ char usart_read_char(usart_t *usart);
 void usart_write_char(usart_t *usart, char c);
 int usart_read_ready(usart_t *usart);
 char usart_read_char_nb(usart_t *usart);
+int  usart_write_ready(usart_t *usart);
+void usart_write_char_nb(usart_t *usart, char c);
+void usart_tx_interrupt_enable(usart_t *usart);
+void usart_tx_interrupt_disable(usart_t *usart);
+void usart_rx_interrupt_enable(usart_t *usart);
+void usart_rx_interrupt_disable(usart_t *usart);
 
 #endif // UART_H

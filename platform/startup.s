@@ -94,7 +94,7 @@ Default_Handler:
 .word Default_Handler           /* 51: IRQ35 SPI1            */
 .word Default_Handler           /* 52: IRQ36 SPI2            */
 .word USART1_IRQHandler         /* 53: IRQ37 USART1          */
-.word USART2_IRQHandler       /* 54: IRQ38 USART2          */
+.word USART2_IRQHandler         /* 54: IRQ38 USART2          */
 .word Default_Handler           /* 55: IRQ39 USART3          */
 .word EXTI15_10_IRQHandler      /* 56: IRQ40 EXTI15_10  <-- PC13 */
 

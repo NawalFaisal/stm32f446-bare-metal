@@ -1,0 +1,51 @@
+#include "gpio.h"
+#include "nvic.h"
+#include "rcc.h"
+#include "ringbuffer.h"
+#include "uart.h"
+
+
+static ringbuf_t rx;
+static ringbuf_t tx;
+
+void USART2_IRQHandler(void) {
+    if (usart_read_ready(USART2)) {
+        char c = usart_read_char_nb(USART2);
+        rb_put(&rx, c);
+    }
+
+    if (usart_write_ready(USART2)) {
+        char c;
+        if (rb_get(&tx, &c)) {
+            usart_write_char_nb(USART2, c);
+        } else {
+            usart_tx_interrupt_disable(USART2);
+        }
+    }
+}
+
+static void send(char c) {
+    rb_put(&tx, c);
+    usart_tx_interrupt_enable(USART2);
+}
+
+int main(void) {
+    rcc_enable(RCC_GPIOA);
+    rcc_enable(RCC_USART2);
+
+    gpio_init(GPIOA, 2, GPIO_MODE_AF);
+    gpio_set_af(GPIOA, 2, 7);
+    gpio_init(GPIOA, 3, GPIO_MODE_AF);
+    gpio_set_af(GPIOA, 3, 7);
+
+    usart_init(USART2, BAUD_115200);
+    usart_rx_interrupt_enable(USART2);
+    nvic_enable(IRQ_USART2);
+
+    while (1) {
+        char c;
+        if (rb_get(&rx, &c)) {
+            send(c);
+        }
+    }
+}

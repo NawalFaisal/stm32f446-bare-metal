@@ -7,11 +7,11 @@ typedef struct {
     volatile uint32_t DR;  // offset 0x04
     volatile uint32_t BRR; // offset 0x08  //sets baude rate the speed the two communciate at
     volatile uint32_t CR1; // offset 0x0C   //configures if its transmitting or reciveing
-} TypeDef_USART;
+} usart_t;
 
-#define USART1 ((TypeDef_USART *)0x40011000)
-#define USART2 ((TypeDef_USART *)0x40004400)
-#define USART3 ((TypeDef_USART *)0x40004800)
+#define USART1 ((usart_t *)0x40011000)
+#define USART2 ((usart_t *)0x40004400)
+#define USART3 ((usart_t *)0x40004800)
 
 // enum for baud rates
 typedef enum {
@@ -22,10 +22,10 @@ typedef enum {
     BAUD_115200 = 115200
 } baud_rate_t;
 
-void usart_init(TypeDef_USART *usart, baud_rate_t baud);
-char usart_read_char(TypeDef_USART *usart);
-void usart_write_char(TypeDef_USART *usart, char c);
-int usart_read_ready(TypeDef_USART *usart);
-char usart_read_char_nb(TypeDef_USART *usart);
+void usart_init(usart_t *usart, baud_rate_t baud);
+char usart_read_char(usart_t *usart);
+void usart_write_char(usart_t *usart, char c);
+int usart_read_ready(usart_t *usart);
+char usart_read_char_nb(usart_t *usart);
 
 #endif // UART_H

@@ -2,7 +2,7 @@
 #include <stdint.h>
 #define SYSTEM_CLOCK_HZ 16000000
 
-void usart_init(TypeDef_USART *usart, baud_rate_t baud) {
+void usart_init(usart_t *usart, baud_rate_t baud) {
     uint32_t divisor = (SYSTEM_CLOCK_HZ + (baud / 2)) / baud;
     usart->BRR = divisor;
 
@@ -13,20 +13,20 @@ void usart_init(TypeDef_USART *usart, baud_rate_t baud) {
 }
 
 // busy waiting. wait for letter to be written
-void usart_write_char(TypeDef_USART *usart, char c) {
+void usart_write_char(usart_t *usart, char c) {
     while (!(usart->SR & (1U << 7))) {
     } /*wait for TXE*/
     usart->DR = c;
 }
 
 // busy waiting. wait to read letter.
-char usart_read_char(TypeDef_USART *usart) {
+char usart_read_char(usart_t *usart) {
     while (!(usart->SR & (1U << 5))) {
     }
     return usart->DR;
 }
 
 // ISR needs to get the info without being stuck in loop
-char usart_read_char_nb(TypeDef_USART *usart) {
+char usart_read_char_nb(usart_t *usart) {
     return usart->DR;
 }

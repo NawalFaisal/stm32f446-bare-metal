@@ -8,9 +8,9 @@ typedef struct {
     char volatile buf[RB_MAXSIZE];
     uint8_t volatile head; // 0-63 index
     uint8_t volatile tail; // 0-63 index
-} TypeDef_RINGBUF;
+} ringbuf_t;
 
-int rb_get(TypeDef_RINGBUF *rb, char *c);
-void rb_put(TypeDef_RINGBUF *rb, char c);
+int rb_get(ringbuf_t *rb, char *c);
+void rb_put(ringbuf_t *rb, char c);
 
 #endif // RINGBUFFER_H

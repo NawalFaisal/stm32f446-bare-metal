@@ -20,7 +20,7 @@ static void cs_low(void){
 
 }
 
-uint8_t spi_transfer(uint8_t out) {
+static uint8_t spi_byte(uint8_t out) {
     while (!(SPI1->SR & (1U << 1))) {}  //poll  1 = TXE holding pen for byte you want to send 
     SPI1->DR = out;
     while (!(SPI1->SR & (1U << 0))) { }  // poll 0 = RXNE if there data return 
@@ -77,7 +77,7 @@ int main(void) {
     SPI1->CR1 |= (1U << 6); /* SPE — enable, last */
 
     while (1) {
-        uint8_t get = spi_transfer(0xA5);
+        uint8_t get = spi_byte(0xA5);
         (void)get;
     }
 }

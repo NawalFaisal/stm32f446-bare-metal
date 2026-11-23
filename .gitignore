@@ -31,3 +31,5 @@ build/
 *.hex
 *.map
 *.o
+tests/test_queue
+tests/test_ringbuffer

@@ -10,7 +10,7 @@ typedef struct {
     volatile uint32_t CRCPR;
     volatile uint32_t RXCRCR;
     volatile uint32_t TXCRCR;
-} TypeDef_SPI;
+} spi_t;
 
 
 /*Mode 0 — CPOL=0, CPHA=0. Idles low, samples on rising. Most common by far.
@@ -35,9 +35,18 @@ typedef enum {
     SPI_BAUD_DIV256 = 7,
 } spi_baud_t;
 
+typedef enum {
+    SPI_SLAVE  = 0,
+    SPI_MASTER = 1,
+} spi_role_t;
 
-#define SPI1 ((TypeDef_SPI *)0x40013000)
-#define SPI2 ((TypeDef_SPI *)0x40003800)
-#define SPI3 ((TypeDef_SPI *)0x40003C00)
+
+#define SPI1 ((spi_t *)0x40013000)
+#define SPI2 ((spi_t *)0x40003800)
+#define SPI3 ((spi_t *)0x40003C00)
+
+void spi_init(spi_t *spi, spi_mode_t mode, spi_baud_t baud, spi_role_t role);
+uint8_t spi_transfer(spi_t *spi, uint8_t out);
+void spi_wait_idle(spi_t *spi);
 
 #endif // SPI_H
